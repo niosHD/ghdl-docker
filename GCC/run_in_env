@@ -1,0 +1,23 @@
+#!/bin/sh
+
+BASEDIR=$(dirname `readlink -f -- $0`)
+COMMAND="$(basename $0)"
+
+# check if the script has been symlinked to the actual command name
+if [ ! -L $0 ]; then
+  # no symlink -> use the first parameter is the command command
+  if [ $# -lt 1 ]; then
+    echo "Usage: $0 <COMMAND> [COMMAND_ARGUMENTS...]"
+    echo "Alternatively, if this script is started via a symlink the name of the link is used as command."
+    exit 1
+  fi
+  COMMAND=$1
+  shift;
+fi
+
+# setup the environment
+export PATH="${BASEDIR}/bin:${PATH}"
+export LD_LIBRARY_PATH="${BASEDIR}/lib64:${BASEDIR}/lib:${LD_LIBRARY_PATH}"
+
+# run the actual command in the new environment
+bash -c "$COMMAND $*"
