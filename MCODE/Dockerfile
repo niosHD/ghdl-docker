@@ -2,7 +2,11 @@ FROM ubuntu:14.04
 
 LABEL maintainer Mario Werner <mario.werner@iaik.tugraz.at>
 
+# install libgnat to run ghdl
+# additionally a few packages to ease testing are installed
 RUN apt-get update && apt-get install -y \
+  gettext-base \
+  git \
   libgnat-4.6 \
   make \
   python3 \

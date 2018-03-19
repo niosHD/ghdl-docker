@@ -5,9 +5,12 @@ LABEL maintainer Mario Werner <mario.werner@iaik.tugraz.at>
 # copy the build script into the root of the container
 COPY build-ghdl-with-gcc.sh /
 
-# install dependencies and build ghdl
+# install for building ghdl
+# additionally a few packages to ease testing are installed
 RUN apt-get update && \
     apt-get install -y build-essential \
+                       gettext-base \
+                       git \
                        gnat \
                        python3 \
                        texinfo \
