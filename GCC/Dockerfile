@@ -12,11 +12,14 @@ RUN apt-get update && \
                        gettext-base \
                        git \
                        gnat \
+                       lcov \
                        python3 \
+                       python3-pip \
                        texinfo \
                        wget \
                        zlib1g-dev && \
-    PREFIX=/opt/ghdl /build-ghdl-with-gcc.sh
+    PREFIX=/opt/ghdl /build-ghdl-with-gcc.sh && \
+    pip3 install pytest pytest-xdist
 
 # copy the call wrapper into the container and setup symlinks
 COPY run_in_env /opt/ghdl

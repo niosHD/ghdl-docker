@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
   libgnat-4.6 \
   make \
   python3 \
-  wget
+  python3-pip \
+  wget \
+  && pip3 install pytest pytest-xdist
 
 RUN wget https://github.com/tgingold/ghdl/releases/download/v0.35/ghdl-0.35-mcode-ubuntu14.tgz -q && \
   tar xzf ghdl-0.35-mcode-ubuntu14.tgz -C /usr/local && \
